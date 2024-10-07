@@ -1,0 +1,23 @@
+def minimum_masks(test_cases):
+    results = []
+    for N, A in test_cases:
+        if A == 0:
+            results.append(0)
+        else:
+            # Minimum number of people that need to wear a mask is at least 1 if A > 0
+            results.append(1)
+    return results
+
+# Read input
+T = int(input())
+test_cases = []
+for _ in range(T):
+    N, A = map(int, input().split())
+    test_cases.append((N, A))
+
+# Get results
+results = minimum_masks(test_cases)
+
+# Print results
+for res in results:
+    print(res)
