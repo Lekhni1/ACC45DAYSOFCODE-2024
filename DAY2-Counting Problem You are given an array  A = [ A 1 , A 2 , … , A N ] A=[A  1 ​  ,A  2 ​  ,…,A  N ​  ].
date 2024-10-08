@@ -1,0 +1,28 @@
+def can_partition(test_cases):
+    results = []
+    
+    for n, arr in test_cases:
+        odd_count = sum(1 for x in arr if x % 2 != 0)
+        even_count = n - odd_count  # Since total count is n
+        
+        # Check the conditions
+        if odd_count > 1:  # More than one odd
+            results.append("YES")
+        elif odd_count == 1 and even_count > 0:  # One odd and at least one even
+            results.append("YES")
+        else:
+            results.append("NO")
+    
+    return results
+
+# Read input
+T = int(input())
+test_cases = []
+for _ in range(T):
+    N = int(input())
+    A = list(map(int, input().split()))
+    test_cases.append((N, A))
+
+# Get results and print
+results = can_partition(test_cases)
+print("\n".join(results))
