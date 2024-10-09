@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+
+int main() {
+    int T;  
+    std::cin >> T;
+
+    for (int i = 0; i < T; i++) {
+        int N;  
+        std::cin >> N;
+
+        std::string gestures; 
+        std::cin >> gestures;
+
+        if (gestures.find('I') != std::string::npos) {
+            std::cout << "Indian" << std::endl;
+        } else {
+            std::cout << "Not sure" << std::endl;
+        }
+    }
+
+    return 0;
+}
