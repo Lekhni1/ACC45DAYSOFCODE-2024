@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T; // Number of test cases
+    cin >> T;
+    
+    while (T--) {
+        int A, B; // Amounts offered by the two investors
+        cin >> A >> B;
+
+        // Calculate the valuations
+        long long V1 = 10 * A; // Valuation from the first investor
+        long long V2 = 5 * B;  // Valuation from the second investor
+        
+        // Compare valuations and print the result
+        if (V1 > V2) {
+            cout << "FIRST" << endl;
+        } else if (V1 < V2) {
+            cout << "SECOND" << endl;
+        } else {
+            cout << "ANY" << endl;
+        }
+    }
+
+    return 0;
+}
