@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+#include <unordered_map>
+using namespace std;
+
+int main() {
+    int T; // Number of test cases
+    cin >> T;
+
+    while (T--) {
+        int N; // Length of the string
+        cin >> N;
+        string S; // The string itself
+        cin >> S;
+
+        // Count the frequency of each character
+        unordered_map<char, int> frequency;
+        for (char c : S) {
+            frequency[c]++;
+        }
+
+        // Check if any character appears at least twice
+        bool can_form_palindrome = false;
+        for (auto& entry : frequency) {
+            if (entry.second >= 2) {
+                can_form_palindrome = true;
+                break;
+            }
+        }
+
+        if (can_form_palindrome) {
+            // If we can form a palindrome, return the maximum deletable length
+            int max_deletable_length = N - 2;
+            cout << max_deletable_length << endl;
+        } else {
+            // If we can't form a palindrome, return -1
+            cout << -1 << endl;
+        }
+    }
+
+    return 0;
+}
