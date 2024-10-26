@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int T; // Number of test cases
+    cin >> T;
+
+    while (T--) {
+        int N; // Number of fingers
+        cin >> N;
+
+        vector<int> fingers(N);
+        vector<int> sheaths(N);
+
+        // Read finger lengths
+        for (int i = 0; i < N; ++i) {
+            cin >> fingers[i];
+        }
+
+        // Read sheath lengths
+        for (int i = 0; i < N; ++i) {
+            cin >> sheaths[i];
+        }
+
+        bool canFront = true;
+        bool canBack = true;
+
+        // Check both orientations
+        for (int i = 0; i < N; ++i) {
+            if (fingers[i] > sheaths[i]) {
+                canFront = false;
+            }
+            if (fingers[i] > sheaths[N - 1 - i]) {
+                canBack = false;
+            }
+        }
+
+        // Determine the result
+        if (canFront && canBack) {
+            cout << "both" << endl;
+        } else if (canFront) {
+            cout << "front" << endl;
+        } else if (canBack) {
+            cout << "back" << endl;
+        } else {
+            cout << "none" << endl;
+        }
+    }
+
+    return 0;
+}
