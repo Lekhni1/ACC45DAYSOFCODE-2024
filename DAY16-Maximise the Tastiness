@@ -1,0 +1,21 @@
+#include <iostream>
+#include <algorithm> // For std::max
+using namespace std;
+
+int main() {
+    int T; // Number of test cases
+    cin >> T;
+
+    while (T--) {
+        int a, b, c, d; // Tastiness of the ingredients
+        cin >> a >> b >> c >> d;
+
+        // Calculate the maximum possible tastiness
+        int max_tastiness = max({a + c, a + d, b + c, b + d});
+
+        // Output the result
+        cout << max_tastiness << endl;
+    }
+
+    return 0;
+}
