@@ -1,0 +1,30 @@
+def chef_steps():
+    import sys
+    input = sys.stdin.read
+    data = input().splitlines()
+
+    index = 0
+    T = int(data[index])
+    index += 1
+    results = []
+    
+    for _ in range(T):
+        N, K = map(int, data[index].split())
+        index += 1
+        distances = list(map(int, data[index].split()))
+        index += 1
+        
+        result = []
+        for D in distances:
+            if D % K == 0:
+                result.append('1')
+            else:
+                result.append('0')
+        
+        results.append(''.join(result))
+    
+    # Output all results
+    print('\n'.join(results))
+
+# You can call this function in an environment where you can pass input
+# chef_steps()
