@@ -1,0 +1,24 @@
+def retrieve_array(T, test_cases):
+    results = []
+    for case in test_cases:
+        N, B = case
+        total_B = sum(B)
+        S = total_B // (N + 1)
+        A = [b - S for b in B]
+        results.append(A)
+    return results
+
+# Reading input
+T = int(input())
+test_cases = []
+for _ in range(T):
+    N = int(input())
+    B = list(map(int, input().split()))
+    test_cases.append((N, B))
+
+# Retrieving the array A
+results = retrieve_array(T, test_cases)
+
+# Output the results
+for A in results:
+    print(" ".join(map(str, A)))
