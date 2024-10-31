@@ -1,0 +1,34 @@
+ def rearrange_array(test_cases):
+    results = []
+    
+    for A in test_cases:
+        N = len(A)
+        A.sort()  # Sort the array
+        
+        result = [0] * N  # Prepare the result array
+        left = 0  # Pointer for the smallest elements
+        right = N - 1  # Pointer for the largest elements
+        
+        for i in range(N):
+            if i % 2 == 0:
+                result[i] = A[left]  # Place the smallest available element
+                left += 1
+            else:
+                result[i] = A[right]  # Place the largest available element
+                right -= 1
+        
+        results.append(result)
+    
+    return results
+
+# Example usage
+T = int(input())
+test_cases = []
+for _ in range(T):
+    N = int(input())
+    A = list(map(int, input().split()))
+    test_cases.append(A)
+
+results = rearrange_array(test_cases)
+for res in results:
+    print(' '.join(map(str, res)))
