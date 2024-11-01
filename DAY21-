@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int minOperationsToPermutation(const vector<int>& A, int N) {
+    vector<int> count(N + 1, 0);
+    int excess = 0;
+    
+    // Count occurrences of each number in A
+    for (int number : A) {
+        if (number >= 1 && number <= N) {
+            count[number]++;
+        } else if (number > N) {
+            excess++;
+        }
+    }
+    
+    vector<int> missing;
+    
+    // Find missing numbers
+    for (int i = 1; i <= N; ++i) {
+        if (count[i] == 0) {
+            missing.push_back(i);
+        } else if (count[i] > 1) {
+            excess += (count[i] - 1);
+        }
+    }
+
+    // If we don't have enough excess to cover missing numbers
+    if (missing.size() > excess) {
+        return -1;
+    }
+
+    // Calculate the number of operations needed
+    int operations = 0;
+    for (int m : missing) {
+        operations += m; // We assume we increase some excess numbers to match the missing
+    }
+
+    return operations;
+}
+
+int main() {
+    int T;
+    cin >> T;
+    
+    while (T--) {
+        int N;
+        cin >> N;
+        vector<int> A(N);
+        
+        for (int i = 0; i < N; ++i) {
+            cin >> A[i];
+        }
+        
+        int result = minOperationsToPermutation(A, N);
+        cout << result << endl;
+    }
+    
+    return 0;
+}
