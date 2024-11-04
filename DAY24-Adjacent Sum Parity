@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int T;
+    cin >> T;
+    
+    while (T--) {
+        int N;
+        cin >> N;
+        vector<int> B(N);
+        for (int i = 0; i < N; ++i) {
+            cin >> B[i];
+        }
+
+        // Check for transitions in the circular array
+        bool possible = true;
+        int transitions = 0;
+
+        for (int i = 0; i < N; ++i) {
+            if (B[i] != B[(i + 1) % N]) {
+                transitions++;
+            }
+        }
+
+        // If there are more than 2 transitions, it's impossible
+        // If there are 0 transitions or 2 transitions, it's possible
+        if (transitions != 0 && transitions != 2) {
+            possible = false;
+        }
+
+        cout << (possible ? "YES" : "NO") << endl;
+    }
+
+    return 0;
+}
