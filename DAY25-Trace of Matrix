@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+
+using namespace std;
+
+int find_max_trace(const vector<vector<int>>& matrix, int N) {
+    int max_trace = INT_MIN;
+
+    // Loop over all possible diagonal starting points
+    for (int start_row = 0; start_row < N; ++start_row) {
+        for (int start_col = 0; start_col < N; ++start_col) {
+            int current_trace = 0;
+            int r = start_row, c = start_col;
+
+            // Calculate trace of the diagonal starting at (start_row, start_col)
+            while (r < N && c < N) {
+                current_trace += matrix[r][c];
+                max_trace = max(max_trace, current_trace);
+                r++;
+                c++;
+            }
+        }
+    }
+
+    return max_trace;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T; // Number of test cases
+
+    while (T--) {
+        int N;
+        cin >> N; // Size of the matrix
+        vector<vector<int>> matrix(N, vector<int>(N));
+
+        // Read the matrix
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                cin >> matrix[i][j];
+            }
+        }
+
+        // Find the maximum trace for the current matrix
+        int result = find_max_trace(matrix, N);
+        cout << result << endl;
+    }
+
+    return 0;
+}
