@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;  // Number of test cases
+
+    while (T--) {
+        int N;
+        cin >> N;  // Number of friends
+        vector<int> recommendations(N);
+        
+        // Read the recommendations
+        for (int i = 0; i < N; ++i) {
+            cin >> recommendations[i];
+        }
+
+        // Count recommendations for laptops 1 to 10
+        vector<int> count(11, 0); // Index 0 will be unused
+
+        for (int i = 0; i < N; ++i) {
+            count[recommendations[i]]++;
+        }
+
+        // Find the laptop with maximum recommendations
+        int max_count = *max_element(count.begin() + 1, count.end());
+        vector<int> max_laptops;
+
+        for (int i = 1; i <= 10; ++i) {
+            if (count[i] == max_count) {
+                max_laptops.push_back(i);
+            }
+        }
+
+        // Determine the result
+        if (max_laptops.size() > 1) {
+            cout << "CONFUSED" << endl;
+        } else {
+            cout << max_laptops[0] << endl;
+        }
+    }
+
+    return 0;
+}
