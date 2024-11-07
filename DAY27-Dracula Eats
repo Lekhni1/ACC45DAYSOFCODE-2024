@@ -1,0 +1,12 @@
+def count_tuesdays(N):
+    # Number of Tuesdays in complete weeks
+    complete_weeks = N // 7
+    # Check if there's an extra Tuesday in the remaining days
+    extra_tuesday = 1 if N % 7 >= 2 else 0
+    return complete_weeks + extra_tuesday
+
+# Input reading
+T = int(input())  # Number of test cases
+for _ in range(T):
+    N = int(input())  # Number of spooky days for the test case
+    print(count_tuesdays(N))
