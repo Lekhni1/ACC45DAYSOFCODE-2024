@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Read number of test cases
+    int T;
+    cin >> T;
+    
+    // Process each test case
+    while (T--) {
+        // Read the values of N, X, and S
+        int N, X, S;
+        cin >> N >> X >> S;
+        
+        // The coin initially starts at position X
+        int coin_position = X;
+        
+        // Process each swap
+        for (int i = 0; i < S; ++i) {
+            int A, B;
+            cin >> A >> B;
+            
+            // If the coin is in one of the swapped boxes, update its position
+            if (coin_position == A) {
+                coin_position = B;
+            } else if (coin_position == B) {
+                coin_position = A;
+            }
+        }
+        
+        // After all swaps, output the position of the coin
+        cout << coin_position << endl;
+    }
+    
+    return 0;
+}
