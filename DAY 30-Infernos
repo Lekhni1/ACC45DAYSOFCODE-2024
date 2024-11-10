@@ -1,0 +1,37 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    int T;
+    cin >> T;
+    
+    while (T--) {
+        int N, X;
+        cin >> N >> X;
+        
+        vector<int> H(N);
+        for (int i = 0; i < N; ++i) {
+            cin >> H[i];
+        }
+        
+        // Calculate time for Single-Target Mode
+        int single_target_time = 0;
+        for (int h : H) {
+            single_target_time += (h + X - 1) / X; // ceil(h / X)
+        }
+        
+        // Calculate time for Multi-Target Mode
+        int multi_target_time = *max_element(H.begin(), H.end());
+        
+        // Output the minimum time
+        cout << min(single_target_time, multi_target_time) << "\n";
+    }
+    
+    return 0;
+}
