@@ -1,0 +1,62 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+
+    while (T--) {
+        int N, X;
+        cin >> N >> X;
+
+        vector<int> A(N), B(N);
+        for (int i = 0; i < N; ++i) {
+            cin >> A[i];
+        }
+        for (int i = 0; i < N; ++i) {
+            cin >> B[i];
+        }
+
+        int neededWins = (N / 2) + 1; // More than half of N
+        int currentWins = 0;
+        vector<int> votesNeeded(N);
+
+        for (int i = 0; i < N; ++i) {
+            if (A[i] > B[i]) {
+                currentWins++;
+            } else {
+                votesNeeded[i] = B[i] - A[i] + 1; // Votes needed to win in this state
+            }
+        }
+
+        if (currentWins >= neededWins) {
+            cout << "YES" << endl;
+            continue;
+        }
+
+        sort(votesNeeded.begin(), votesNeeded.end());
+        int additionalWins = 0;
+
+        for (int i = 0; i < N; ++i) {
+            if (votesNeeded[i] > 0 && additionalWins + currentWins < neededWins) {
+                if (X >= votesNeeded[i]) {
+                    X -= votesNeeded[i];
+                    additionalWins++;
+                } else {
+                    break;
+                }
+            }
+        }
+
+        if (currentWins + additionalWins >= neededWins) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
+        }
+    }
+
+    return 0;
+}
