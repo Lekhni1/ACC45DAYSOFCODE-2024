@@ -1,0 +1,37 @@
+#include <iostream>
+#include <vector>
+#include <algorithm> // for sort and find
+using namespace std;
+
+int main() {
+    int T; // Number of test cases
+    cin >> T;
+
+    while (T--) {
+        int N; // Number of songs
+        cin >> N;
+
+        vector<int> A(N); // Vector to store song lengths
+        for (int i = 0; i < N; ++i) {
+            cin >> A[i]; // Input song lengths
+        }
+
+        int K; // Position of Uncle Johny (1-indexed)
+        cin >> K;
+
+        // Get the length of Uncle Johny's song
+        int uncleJohnyLength = A[K - 1];
+
+        // Sort the playlist
+        vector<int> sortedA = A; // Create a copy for sorting
+        sort(sortedA.begin(), sortedA.end());
+
+        // Find the new position of Uncle Johny's song in the sorted playlist
+        int newPosition = find(sortedA.begin(), sortedA.end(), uncleJohnyLength) - sortedA.begin() + 1;
+
+        // Output the result
+        cout << newPosition << endl;
+    }
+
+    return 0;
+}
