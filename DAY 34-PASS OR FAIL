@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int N, X, P;
+        cin >> N >> X >> P;
+        int score = 4 * X - N; // Calculate the total score
+        if (score >= P) {
+            cout << "PASS" << endl; // Chef passes
+        } else {
+            cout << "FAIL" << endl; // Chef fails
+        }
+    }
+    return 0;
+}
