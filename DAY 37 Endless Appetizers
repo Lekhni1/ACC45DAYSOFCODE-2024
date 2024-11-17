@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int max_plates(int X, int Y, int R) {
+    // Calculate the total number of sticks Chef has eaten
+    int extra_sticks = R / 30;
+    int total_sticks = X + extra_sticks;
+    
+    // Calculate the number of plates required (ceil(total_sticks / Y))
+    int plates = (total_sticks + Y - 1) / Y; // This is a way to compute the ceiling of total_sticks / Y
+    
+    return plates;
+}
+
+int main() {
+    int T;
+    cin >> T;  // Input the number of test cases
+    
+    while (T--) {
+        int X, Y, R;
+        cin >> X >> Y >> R;  // Input the values for each test case
+        
+        // Output the result for the current test case
+        cout << max_plates(X, Y, R) << endl;
+    }
+    
+    return 0;
+}
