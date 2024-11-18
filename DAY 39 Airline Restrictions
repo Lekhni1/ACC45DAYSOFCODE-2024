@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int A, B, C, D, E;
+        cin >> A >> B >> C >> D >> E;
+        
+        bool possible = false;
+        
+        // Check configuration 1: carry A, check-in B and C
+        if (A <= E && B + C <= D) possible = true;
+        // Check configuration 2: carry B, check-in A and C
+        if (B <= E && A + C <= D) possible = true;
+        // Check configuration 3: carry C, check-in A and B
+        if (C <= E && A + B <= D) possible = true;
+        
+        if (possible)
+            cout << "YES" << endl;
+        else
+            cout << "NO" << endl;
+    }
+    return 0;
+}
