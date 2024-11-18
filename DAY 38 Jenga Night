@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;  // Read number of test cases
+    
+    while (T--) {
+        int X, Y, R;
+        cin >> X >> Y >> R;  // Read X, Y, R for each test case
+        
+        // Calculate the extra sticks Chef ate
+        int extra_sticks = R / 30;
+        
+        // Total sticks Chef ate
+        int total_sticks = X + extra_sticks;
+        
+        // Calculate the number of plates Chef needed
+        int plates_needed = (total_sticks + Y - 1) / Y;
+        
+        // Output the result for this test case
+        cout << plates_needed << endl;
+    }
+    
+    return 0;
+}
