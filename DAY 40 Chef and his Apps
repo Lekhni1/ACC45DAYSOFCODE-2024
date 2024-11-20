@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int T;  // Number of test cases
+    cin >> T;
+    
+    while (T--) {
+        int S, X, Y, Z;  // S = total storage, X = memory of first app, Y = memory of second app, Z = memory of third app
+        cin >> S >> X >> Y >> Z;
+        
+        // Calculate available memory
+        int available_memory = S - (X + Y);
+        
+        // If available memory is enough to install the third app
+        if (available_memory >= Z) {
+            cout << 0 << endl;  // No need to delete any app
+        }
+        // If deleting one app (either X or Y) will make enough space for the third app
+        else if (available_memory + X >= Z || available_memory + Y >= Z) {
+            cout << 1 << endl;  // Delete one app
+        }
+        // If we need to delete both apps to make enough space for the third app
+        else {
+            cout << 2 << endl;  // Delete both apps
+        }
+    }
+    
+    return 0;
+}
