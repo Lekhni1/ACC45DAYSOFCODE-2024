@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <unordered_map>
+
+using namespace std;
+
+int main() {
+    int T; // Number of test cases
+    cin >> T;
+
+    // Encoding map for binary pairs to DNA bases
+    unordered_map<string, char> encoding = {
+        {"00", 'A'},
+        {"01", 'T'},
+        {"10", 'C'},
+        {"11", 'G'}
+    };
+
+    while (T--) {
+        int N;
+        cin >> N;  // Length of the binary string
+        string S;
+        cin >> S;  // Binary string
+        
+        string result = "";
+        // Process the string in pairs of bits
+        for (int i = 0; i < N; i += 2) {
+            string pair = S.substr(i, 2);  // Extract a pair of bits
+            result += encoding[pair];       // Append the corresponding encoded character
+        }
+
+        cout << result << endl;  // Output the encoded string
+    }
+
+    return 0;
+}
