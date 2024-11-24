@@ -1,0 +1,42 @@
+import random
+
+def generate_wrong_answer(A, B):
+    # Step 1: Calculate the correct result
+    correct_result = A - B
+    
+    # Step 2: Convert the result to a string
+    correct_result_str = str(correct_result)
+    
+    # Step 3: Pick one digit to modify
+    # Convert the correct result into a list of characters (mutable)
+    result_list = list(correct_result_str)
+    
+    # Randomly select a position to modify (make sure it's not the first digit if the number has more than 1 digit)
+    index_to_modify = random.randint(0, len(result_list) - 1)
+    original_digit = result_list[index_to_modify]
+    
+    # Modify the chosen digit to a different one
+    # Ensure we don't change it to the same digit
+    new_digit = original_digit
+    while new_digit == original_digit:
+        new_digit = str(random.randint(0, 9))
+    
+    result_list[index_to_modify] = new_digit
+    
+    # Step 4: Return the modified result as a string
+    # Join the list of characters back into a string and print it
+    wrong_answer = ''.join(result_list)
+    
+    # Ensure that there are no leading zeros
+    if wrong_answer[0] == '0':
+        # Fix leading zeros if present by changing the first digit to a valid non-zero digit
+        wrong_answer = wrong_answer[1:]
+        wrong_answer = str(random.randint(1, 9)) + wrong_answer
+    
+    return wrong_answer
+
+# Reading input
+A, B = map(int, input().split())
+
+# Output the wrong answer
+print(generate_wrong_answer(A, B))
